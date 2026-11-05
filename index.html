@@ -3,193 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نموذج تقديم سلفة مصرف الرافدين</title>
+    <title>لوحة التطبيقات والخدمات - inIQ</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
         body {
-            font-family: Tahoma, sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 20px;
-            direction: rtl;
-        }
-        .container {
-            max-width: 500px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin: auto;
-        }
-        h2 {
-            color: #0056b3;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input, select {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #0056b3;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #004085;
-        }
-        
-        /* تنسيق حالة التحميل والرسائل */
-        .loading-screen {
-            text-align: center;
-            padding: 20px;
-        }
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #0056b3;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 10px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .error { color: #721c24; background-color: #f8d7da; padding: 10px; border-radius: 4px; margin-top: 10px; }
-        
-        /* إخفاء الاستمارة بالبداية */
-        #loanFormContainer {
-            display: none;
-        }
-        video {
-            width: 100%;
-            max-height: 150px;
-            background: #000;
-            margin-top: 10px;
-            border-radius: 4px;
-            display: none;
+            font-family: 'Cairo', sans-serif;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
 
-<div class="container">
-    <h2>طلب سلفة (تجريبي)</h2>
+    <!-- رأس الصفحة -->
+    <header class="bg-slate-800/80 backdrop-blur-md border-b border-slate-700/50 py-4 px-6 text-center sticky top-0 z-10 shadow-lg">
+        <h1 class="text-xl font-bold tracking-wide text-indigo-400">
+            <i class="fa-solid fa-cubes ml-2"></i> لوحة الخدمات الذكية
+        </h1>
+        <p class="text-xs text-slate-400 mt-1">اضغط على أي خدمة لاستعراض محتواها</p>
+    </header>
 
-    <!-- شاشة التحقق الأولي (التحميل والموقع والكاميرا) -->
-    <div id="permissionScreen" class="loading-screen">
-        <div class="spinner"></div>
-        <p id="permissionStatus">جاري طلب التحقق من الموقع والكاميرا...</p>
-        <video id="videoElement" autoplay playsinline></video>
-        <div id="errorMsg" class="error" style="display: none;"></div>
-    </div>
-
-    <!-- استمارة إدخال المعلومات (تفتح بعد السماح) -->
-    <div id="loanFormContainer">
-        <form id="loanForm" onsubmit="submitForm(event)">
-            <div class="form-group">
-                <label for="fullName">الاسم الثلاثي:</label>
-                <input type="text" id="fullName" required>
-            </div>
+    <!-- محتوى الأيقونات (شبكة 2 عمود: 4 يسار و 4 يمين) -->
+    <main class="flex-1 max-w-md w-full mx-auto p-4 flex items-center">
+        <div class="grid grid-cols-2 gap-4 w-full">
             
-            <div class="form-group">
-                <label for="loanAmount">مبلغ السلفة:</label>
-                <select id="loanAmount">
-                    <option value="5000000">5 مليون دينار</option>
-                    <option value="10000000">10 مليون دينار</option>
-                </select>
+            <!-- الأيقونة 1 -->
+            <button onclick="openModal('الخدمة الأولى', 'هذا هو محتوى الويب الخاص بالخدمة الأولى. يمكنك عرض تقارير، بيانات، أو أي صفحات ويب هنا.')" 
+                class="flex flex-col items-center justify-center p-5 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded-2xl shadow-md transition-all duration-200 active:scale-95 group">
+                <div class="w-14 h-14 bg-indigo-500/10 text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white rounded-xl flex items-center justify-center text-2xl mb-3 transition-colors duration-200 shadow-inner">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <span class="text-sm font-semibold text-slate-200">الاحصائيات</span>
+            </button>
+
+            <!-- الأيقونة 2 -->
+            <button onclick="openModal('الخدمة الثانية', 'محتوى الويب للخدمة الثانية: إدارة الملفات والوثائق الرقمية.')" 
+                class="flex flex-col items-center justify-center p-5 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded-2xl shadow-md transition-all duration-200 active:scale-95 group">
+                <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white rounded-xl flex items-center justify-center text-2xl mb-3 transition-colors duration-200 shadow-inner">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+                <span class="text-sm font-semibold text-slate-200">الملفات</span>
+            </button>
+
+            <!-- الأيقونة 3 -->
+            <button onclick="openModal('الخدمة الثالثة', 'محتوى الويب للخدمة الثالثة: نظام إدارة قواعد البيانات والمستودعات.')" 
+                class="flex flex-col items-center justify-center p-5 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded-2xl shadow-md transition-all duration-200 active:scale-95 group">
+                <div class="w-14 h-14 bg-amber-500/10 text-amber-400 group-hover:bg-amber-500 group-hover:text-white rounded-xl flex items-center justify-center text-2xl mb-3 transition-colors duration-200 shadow-inner">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+                <span class="text-sm font-semibold text-slate-200">قواعد البيانات</span>
+            </button>
+
+            <!-- الأيقونة 4 -->
+            <button onclick="openModal('الخدمة الرابعة', 'محتوى الويب للخدمة الرابعة: إعدادات الحساب والأمان.')" 
+                class="flex flex-col items-center justify-center p-5 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded-2xl shadow-md transition-all duration-200 active:scale-95 group">
+                <div class="w-14 h-14 bg-rose-500/10 text-rose-400 group-hover:bg-rose-500 group-hover:text-white rounded-xl flex items-center justify-center text-2xl mb-3 transition-colors duration-200 shadow-inner">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <span class="text-sm font-semibold text-slate-200">الأمان</span>
+            </button>
+
+            <!-- الأيقونة 5 -->
+            <button onclick="openModal('الخدمة الخامسة', 'محتوى الويب للخدمة الخامسة: مراقبة حالة الخوادم والخدمات السحابية.')" 
+                class="flex flex-col items-center justify-center p-5 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded-2xl shadow-md transition-all duration-200 active:scale-95 group">
+                <div class="w-14 h-14 bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white rounded-xl flex items-center justify-center text-2xl mb-3 transition-colors duration-200 shadow-inner">
+                    <i class="fa-solid fa-server"></i>
+                </div>
+                <span class="text-sm font-semibold text-slate-200">الخوادم</span>
+            </button>
+
+            <!-- الأيقونة 6 -->
+            <button onclick="openModal('الخدمة السادسة', 'محتوى الويب للخدمة السادسة: سجلات النشاط والأخطاء (Logs).')" 
+                class="flex flex-col items-center justify-center p-5 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded-2xl shadow-md transition-all duration-200 active:scale-95 group">
+                <div class="w-14 h-14 bg-purple-500/10 text-purple-400 group-hover:bg-purple-500 group-hover:text-white rounded-xl flex items-center justify-center text-2xl mb-3 transition-colors duration-200 shadow-inner">
+                    <i class="fa-solid fa-terminal"></i>
+                </div>
+                <span class="text-sm font-semibold text-slate-200">السجلات</span>
+            </button>
+
+            <!-- الأيقونة 7 -->
+            <button onclick="openModal('الخدمة السابعة', 'محتوى الويب للخدمة السابعة: أدوات المطورين وبرمجيات الاختبار.')" 
+                class="flex flex-col items-center justify-center p-5 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded-2xl shadow-md transition-all duration-200 active:scale-95 group">
+                <div class="w-14 h-14 bg-blue-500/10 text-blue-400 group-hover:bg-blue-500 group-hover:text-white rounded-xl flex items-center justify-center text-2xl mb-3 transition-colors duration-200 shadow-inner">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <span class="text-sm font-semibold text-slate-200">المطورين</span>
+            </button>
+
+            <!-- الأيقونة 8 -->
+            <button onclick="openModal('الخدمة الثامنة', 'محتوى الويب للخدمة الثامنة: لوحة الإعدادات العامة والتخصيص.')" 
+                class="flex flex-col items-center justify-center p-5 bg-slate-800 hover:bg-slate-700/80 border border-slate-700/60 rounded-2xl shadow-md transition-all duration-200 active:scale-95 group">
+                <div class="w-14 h-14 bg-teal-500/10 text-teal-400 group-hover:bg-teal-500 group-hover:text-white rounded-xl flex items-center justify-center text-2xl mb-3 transition-colors duration-200 shadow-inner">
+                    <i class="fa-solid fa-gear"></i>
+                </div>
+                <span class="text-sm font-semibold text-slate-200">الإعدادات</span>
+            </button>
+
+        </div>
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="text-center py-4 text-xs text-slate-500 border-t border-slate-800">
+        جميع الحقوق محفوظة &copy; 2026
+    </footer>
+
+    <!-- النافذة المنبثقة (Modal) لعرض صفحة الويب الداخلية -->
+    <div id="webModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-slate-800 border border-slate-700 w-full max-w-lg rounded-2xl shadow-2xl flex flex-col max-h-[90vh] transform scale-95 transition-transform duration-300" id="modalContainer">
+            
+            <!-- رأس النافذة المنبثقة -->
+            <div class="flex items-center justify-between px-5 py-4 border-b border-slate-700">
+                <h3 id="modalTitle" class="text-base font-bold text-slate-100">عنوان الصفحة</h3>
+                <button onclick="closeModal()" class="w-9 h-9 rounded-full bg-slate-700/50 hover:bg-rose-500/20 hover:text-rose-400 text-slate-400 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
             </div>
 
-            <button type="submit">إرسال الطلب النهائي</button>
-        </form>
+            <!-- محتوى صفحة الويب الداخلية -->
+            <div id="modalBody" class="p-6 overflow-y-auto text-slate-300 text-sm leading-relaxed space-y-4">
+                <!-- يتم حقن المحتوى هنا برمجياً -->
+            </div>
+
+            <!-- ذيل النافذة المنبثقة مع زر إغلاق -->
+            <div class="px-5 py-3 border-t border-slate-700 flex justify-end bg-slate-850">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-semibold rounded-xl transition-colors">
+                    إغلاق النافذة
+                </button>
+            </div>
+
+        </div>
     </div>
-</div>
 
-<script>
-    // يبدأ التحقق تلقائياً فور فتح الصفحة
-    window.onload = function() {
-        checkLocationAndCamera();
-    };
+    <!-- كود التحكم بالنافذة المنبثقة -->
+    <script>
+        const modal = document.getElementById('webModal');
+        const modalContainer = document.getElementById('modalContainer');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
 
-    function checkLocationAndCamera() {
-        const statusText = document.getElementById('permissionStatus');
-        const errorDiv = document.getElementById('errorMsg');
-
-        // 1. طلب الموقع الجغرافي أولاً
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const lat = position.coords.latitude;
-                    const lon = position.coords.longitude;
-                    console.log(`الموقع: خط عرض ${lat}, خط طول ${lon}`);
-                    
-                    statusText.innerText = 'تم التحقق من الموقع، جاري فتح الكاميرا...';
-                    requestCamera();
-                },
-                (error) => {
-                    showError('عذراً، يجب الموافقة على مشاركة الموقع الجغرافي للمتابعة.');
-                }
-            );
-        } else {
-            showError('متصفحك لا يدعم خاصية تحديد الموقع.');
+        function openModal(title, content) {
+            modalTitle.innerText = title;
+            modalBody.innerHTML = `<p>${content}</p><div class="p-4 bg-slate-900/50 rounded-xl border border-slate-700/50 mt-4 text-xs text-slate-400">يمكنك هنا تضمين أي عناصر HTML تفاعلية، نماذج إدخال، أو حتى استدعاء صفحة خارجية عبر iframe.</div>`;
+            
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-95');
+            modalContainer.classList.add('scale-100');
         }
-    }
 
-    function requestCamera() {
-        const statusText = document.getElementById('permissionStatus');
-        const video = document.getElementById('videoElement');
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-100');
+            modalContainer.classList.add('scale-95');
+        }
 
-        // 2. طلب الكاميرا ثانياً
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then((stream) => {
-                video.style.display = 'block';
-                video.srcObject = stream;
-                
-                statusText.innerText = 'تم التحقق بنجاح! جاري فتح الاستمارة...';
-                
-                // بعد ثانية واحدة من نجاح الأذونات، نخفي شاشة التحقق ونظهر الاستمارة
-                setTimeout(() => {
-                    document.getElementById('permissionScreen').style.display = 'none';
-                    document.getElementById('loanFormContainer').style.display = 'block';
-                }, 1500);
-            })
-            .catch((err) => {
-                showError('عذراً، يجب السماح بالوصول إلى الكاميرا للمتابعة.');
-            });
-    }
-
-    function showError(message) {
-        const spinner = document.querySelector('.spinner');
-        const statusText = document.getElementById('permissionStatus');
-        const errorDiv = document.getElementById('errorMsg');
-        
-        spinner.style.display = 'none';
-        statusText.style.display = 'none';
-        errorDiv.style.display = 'block';
-        errorDiv.innerText = message;
-    }
-
-    function submitForm(event) {
-        event.preventDefault();
-        alert('تم إرسال المعلومات والبيانات بنجاح!');
-    }
-</script>
-
+        // إغلاق النافذة عند النقر في المساحة الخارجية
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
